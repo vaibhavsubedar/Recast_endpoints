@@ -1,0 +1,132 @@
+swagger: "2.0"
+info:
+  version: "0.0.5"
+  title: "Student Details"
+  description: "This is Student Details endpoints, which provides specific Student Details."
+  
+
+host: localhost:10019
+
+basePath: /studentdetails/api
+
+tags:
+  - name: "Student Details"
+    description: "Student Details"
+    
+schemes:  
+  - http
+  - https
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+definitions: 
+  commonResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+        description: Response Message
+
+
+  studentDetails:
+    description: Data to store student details
+    required:
+      - usn
+      - name
+      - semester
+      - branch
+      
+    properties:
+      usn:
+        type: string
+        description: Student Usn
+      name:
+        type: string
+        description: Student Name
+      semester:
+        type: string
+        description: Student Semester
+      branch:
+        type: string
+        description: Student Branch
+
+
+
+paths:
+ 
+  /savestudentdetails:   
+    x-swagger-router-controller: studentdetails
+    post:
+      tags:
+      - "Student Details"
+      summary: "Create Student Details"
+      description: "Create Student Details"
+      operationId: savestudentdetails
+      parameters:
+        - name: name
+          in: body
+          description: Create Student Details
+          required: true
+          schema:
+            $ref: "#/definitions/studentDetails"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/commonResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/commonResponse"
+
+  /listallstudent:
+    x-swagger-router-controller: studentdetails
+    get:
+      tags:
+      - "Student Details"
+      summary: Returns All Student Details
+      description: List Of All Available Student Details
+      operationId: listallstudent
+      parameters: []
+      responses:
+        "200":
+          description: Student Details List
+          schema:
+            $ref: "#/definitions/studentDetails"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/commonResponse"
+
+  /listspecificstudent/{usn}:
+    x-swagger-router-controller: studentdetails
+    get:
+      tags:
+      - "Student Details"
+      summary: Returns Specific Student Details
+      description: List Specific Student Details
+      operationId: listspecificstudent
+      parameters:
+        - name: usn
+          in: path
+          description: Student Usn
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Student Details List
+          schema:
+            $ref: "#/definitions/studentDetails"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/commonResponse"
+
+ 
+  /swagger:
+    x-swagger-pipe: swagger_raw

@@ -1,0 +1,6 @@
+{
+    "TWILIO_ACCOUNT_SID":"AC257fc02c8ff1af4b82f460e499e48cda",
+    "TWILIO_AUTH_TOKEN":"c5c4855be6d44b4aefcfdb8a43dc5577",
+    "TWILIO_CLAIM_URL":"http://ngrok.io",
+    "CAMUNDA_BASE_URL":"http://localhost:8055"
+}
